@@ -10,12 +10,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 
 /**
  *
- * @author ra21504533
+ * @author RA21504533
  */
 public class CarregaOcorrencia extends HttpServlet {
 
@@ -32,19 +31,40 @@ public class CarregaOcorrencia extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
-            int idOcorrencia = 0;
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet CarregaOcorrencia1</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet CarregaOcorrencia1 at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
             
+            int idOcorrencia = 5;
+
             Ocorrencia ocorrencia0;
             // Buscar do Banco ...
             Session sessao = HibernateUtil.getSessionFactory().openSession();
-            
+
             ocorrencia0 = (Ocorrencia) sessao.get(Ocorrencia.class, idOcorrencia);
+
+            out.println("Dados da Ocorrencia:" + idOcorrencia + " ");
+
+            if (ocorrencia0 == null) {
+
+                out.println("Não encontrei a ocorrencia de id: " + idOcorrencia);
+            }
+            else {
+                out.println("nome:" + ocorrencia0.getNome());
+                out.println("endereco:" + ocorrencia0.getEndereco());
+                out.println("tipo_ocorrencia:" + ocorrencia0.getTipo_ocorrencia());
+            }
+
+        
             
-            out.println("Dados da Ocorrencia 0:");
-            out.println("nome:" + ocorrencia0.getNome());
-            out.println("endereco:" + ocorrencia0.getEndereco());
-            out.println("tipo_ocorrencia:" + ocorrencia0.getTipo_ocorrencia());
+            
             
         }
     }

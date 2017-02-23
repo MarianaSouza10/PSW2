@@ -1,5 +1,7 @@
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /*
@@ -14,12 +16,17 @@ import javax.persistence.Id;
  */
 @Entity
 public class Ocorrencia {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int identificado;
+    
     private String nome;
     private String endereco;
     private String tipo_ocorrencia;
     private int idade;
     
-    @Id
+    
     private int id;
 
     public String getNome() {
